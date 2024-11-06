@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: product_management_api
+    environment:
+      POSTGRES_DB: product_management_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      TZ: "UTC-4"
+    ports:
+      - 3737:3737
+    command: -p 3737
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: product_management_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 4747
+    ports:
+      - 4747:4747
+    depends_on:
+      - postgres
